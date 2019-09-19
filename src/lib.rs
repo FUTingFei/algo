@@ -30,10 +30,23 @@ pub mod quicksort {
 }
 
 pub mod array {
-    pub fn rotate(matrix: &mut Vec<Vec<i32>>) {
+    pub fn rotate_matrix(matrix: &mut Vec<Vec<i32>>) {
+        let mut temp:i32;
+        let l = matrix.len();
         
+        for i in 0..(l/2) {
+            println!("{}",i);
+            println!("{}",l-i-1);
+            for j in i..(l-i-1) {
+                temp = matrix[i][j];
+                matrix[i][j] = matrix[l-j-1][i];
+                matrix[l-j-1][i] = matrix[l-i-1][l-j-1];
+                matrix[l-i-1][l-j-1] = matrix[j][l-i-1];
+                matrix[j][l-i-1] = temp;
+            }
+        }
     }
-    
+
     pub fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
         use std::collections::HashSet;
 
