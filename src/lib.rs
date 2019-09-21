@@ -278,20 +278,25 @@ pub mod array {
 }
 
 pub mod list {
+    #[derive(PartialEq, Eq, Clone, Debug)]
+    pub struct Node {
+        pub val: i32,
+        pub next: Option<Box<Node>>
+    }
 
-}
-
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>
-}
-
-impl ListNode {
-    pub fn new(val: i32) -> Self {
-        ListNode {
-            next: None,
-            val
+    impl<T> Node<T> {
+        fn new(elem: T) -> Self {
+            Node {
+                val:elem,
+                next: None,
+            }
         }
+
+        fn set_next(&mut self, node: Self) {
+            self.next = Some(Box::new(node));
+        }
+
+        // to be continued...
     }
 }
+
