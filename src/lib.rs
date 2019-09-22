@@ -279,15 +279,15 @@ pub mod array {
 
 pub mod list {
     #[derive(PartialEq, Eq, Clone, Debug)]
-    pub struct Node {
+    pub struct ListNode {
         pub val: i32,
-        pub next: Option<Box<Node>>
+        pub next: Option<Box<ListNode>>
     }
 
-    impl<T> Node<T> {
-        fn new(elem: T) -> Self {
+    impl Node {
+        fn new(val: i32) -> Self {
             Node {
-                val:elem,
+                val:val,
                 next: None,
             }
         }
