@@ -1,14 +1,12 @@
-// use algo::quicksort::quicksort_lomuto;
-// use algo::array;
-use algo::my_link_list::List;
+use std::collections::LinkedList;
+use algo::list_algo;
 
 fn main() {
-    let mut my_list = List::<u8>::new();
-    my_list.push(0);
-    my_list.push(1);
-    my_list.push(2);
-    println!("{:?}", my_list.len());
-    println!("{:?}", my_list.get_last_value());
-    my_list.pop();
-    println!("{:?}", my_list);
+    let mut list: LinkedList<u32> = LinkedList::new();
+    list.push_back(4);
+    list.push_back(5);
+    list.push_back(1);
+    list.push_back(9);
+    list_algo::delete_node(&mut list, 5);
+    println!("{:?}", list);
 }

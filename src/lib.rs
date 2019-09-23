@@ -1,4 +1,4 @@
-pub mod quicksort {
+pub mod sort_algo {
     pub fn quicksort_lomuto(arr: &mut [i32]) {
         let hi = arr.len() as isize - 1;
         quicksort_helper(arr, 0, hi);
@@ -29,7 +29,7 @@ pub mod quicksort {
     }
 }
 
-pub mod array {
+pub mod array_algo {
     pub fn rotate_matrix(matrix: &mut Vec<Vec<i32>>) {
         let mut temp:i32;
         let l = matrix.len();
@@ -424,3 +424,22 @@ pub mod my_link_list {
     }
 }
 
+pub mod list_algo {
+    use std::collections::LinkedList;
+    pub fn delete_node(list: &mut LinkedList<u32>, val: u32) {
+        let mut t: LinkedList<u32> = LinkedList::new();
+        let mut i = 0;
+        let len = list.len();
+        while i < len {
+            if list[i] == val {
+                list.pop_front();
+                break;
+            } else {
+                let p = list.pop_front().unwrap();
+                t.push_back(p);
+            }
+            i += 1;
+        }
+        list.append(&mut t);
+    }
+}
