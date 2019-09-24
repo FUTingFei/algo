@@ -1,12 +1,10 @@
-use std::collections::LinkedList;
-use algo::list_algo;
+use algo::stack_algo;
 
 fn main() {
-    let mut list: LinkedList<u32> = LinkedList::new();
-    list.push_back(4);
-    list.push_back(5);
-    list.push_back(1);
-    list.push_back(9);
-    list_algo::delete_node(&mut list, 5);
-    println!("{:?}", list);
+    let mut s = stack_algo::ArrayQueue::new(4);
+    s.enqueue("just test".to_string());
+    s.enqueue("just test 2".to_string());
+    println!("{:?}", s);
+    s.dequeue();
+    println!("{:?}", s);
 }
