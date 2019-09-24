@@ -427,19 +427,50 @@ pub mod my_link_list {
 pub mod list_algo {
     use std::collections::LinkedList;
     pub fn delete_node(list: &mut LinkedList<u32>, val: u32) {
-        let mut t: LinkedList<u32> = LinkedList::new();
-        let mut i = 0;
-        let len = list.len();
-        while i < len {
-            if list[i] == val {
-                list.pop_front();
-                break;
-            } else {
-                let p = list.pop_front().unwrap();
-                t.push_back(p);
+        println!("{:?},{}", list,val);
+        // for l in list {
+            // if *l == val {
+            //     l.next() = l.next().next(); 好像rust linkedlist 没有next这个功能呢_(:зゝ∠)_，这可咋整
+            //     break;
+            // }
+        // }
+    }
+}
+
+pub mod my_stack {
+    struct array_stack {
+        items: Vec<String>,
+        count: usize,
+        n: usize,
+    }
+
+    impl array_stack {
+        fn new(n: usize) -> Self {
+            array_stack {
+                items: vec![],
+                count: 0,
+                n: n
             }
-            i += 1;
         }
-        list.append(&mut t);
+
+        fn push(&mut self, item: String) -> bool {
+            if self.count == self.n {
+                return false;
+            }
+            
+            self.items[self.count] = item;
+            self.count += 1;
+
+            true
+        }
+
+        fn pop(&mut self) -> Option<String> {
+            if self.count == 0 {
+                return None;
+            }
+            let s = self.items[self.count - 1].clone();
+            self.count -= 1;
+            Some(s)
+        }
     }
 }
