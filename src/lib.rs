@@ -542,3 +542,9 @@ pub mod stack_algo {
 
     }
 }
+
+pub mod string_algo {
+    pub fn reverse_string(s: &mut Vec<char>) {
+        
+    }
+}
