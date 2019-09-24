@@ -510,13 +510,24 @@ pub mod stack_algo {
         }
 
         pub fn enqueue(&mut self, item: String) -> bool {
-            if self.tail == self.n {
+            if self.tail == self.n { 
                 return false;
             }
 
             self.items.push(item);
             self.tail += 1;
             true
+
+            // 循环队列
+            // let t = (self.tail + 1) % self.n;
+            // if t == self.head { 
+            //     return false;
+            // }
+
+            // self.items.push(item);
+            // self.tail = (self.tail + 1) % self.n;
+            // true
+
         }
 
         pub fn dequeue(&mut self) -> Option<String> {
@@ -524,6 +535,8 @@ pub mod stack_algo {
                 return None;
             }
             self.head += 1;
+            // 循环队列
+            // self.head = (self.head + 1) % self.n;
             Some(self.items.remove(0))
         }
 
