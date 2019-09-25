@@ -569,7 +569,13 @@ pub mod string_algo {
         let mut c:Vec<char> = s.chars().collect();
         c.reverse();
         let s: String = c.iter().collect();
-        let res: i32 = s.parse().unwrap();
+        let res:Result<i32, _> = s.parse();
+        let res = match res {
+            Ok(pa) => pa,
+            Err(_error) => {
+                return 0;
+            }
+        };
         if is_minus {
             return -res;
         }
