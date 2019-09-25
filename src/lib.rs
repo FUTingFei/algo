@@ -584,6 +584,7 @@ pub mod string_algo {
 
     pub fn first_uniq_char(s: String) -> i32 {
         let c:Vec<char> = s.chars().collect();
+        let mut dup: Vec<char> = Vec::new();
         let len = c.len();
         if len == 0 {
             return -1;
@@ -592,10 +593,15 @@ pub mod string_algo {
             return 0;
         }
         for i in 0..(len-1) {
-            if !c[(i+1)..].contains(&c[i]) {
+            if !c[(i+1)..].contains(&c[i]) && !dup.contains(&c[i]) {
                 return i as i32;
+            } else {
+                dup.push(c[i]);
             }
-        }        
+        }
+        if !dup.contains(&c[len - 1]) {
+            return (len - 1) as i32;
+        }
         -1
     }
 }
