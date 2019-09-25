@@ -542,11 +542,38 @@ pub mod stack_algo {
 }
 
 pub mod string_algo {
+
     pub fn reverse_string(s: &mut Vec<char>) {
         s.reverse();
     }
 
     pub fn reverse(x: i32) -> i32 {
-        x
+        let mut is_minus = false;
+        let mut xx;
+        if x < 0 {
+            xx = -x;
+            is_minus = true;
+        } else if x == 0 {
+            return 0;
+        } else {
+            xx = x;
+        }
+        fn remove_zero(x: &mut i32) {
+            if *x % 10 == 0 {
+                *x = *x / 10;
+                remove_zero(x);
+            }
+        }
+        remove_zero(&mut xx);
+        let s = xx.to_string();
+        let mut c:Vec<char> = s.chars().collect();
+        c.reverse();
+        let s: String = c.iter().collect();
+        let res: i32 = s.parse().unwrap();
+        if is_minus {
+            return -res;
+        }
+        res
     }
+
 }
