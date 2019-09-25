@@ -437,8 +437,6 @@ pub mod list_algo {
     }
 }
 
-
-
 pub mod stack_algo {
     use std::fmt;
 
@@ -545,6 +543,10 @@ pub mod stack_algo {
 
 pub mod string_algo {
     pub fn reverse_string(s: &mut Vec<char>) {
-        println!("{:?}", s);
+        s.reverse();
+    }
+
+    pub fn reverse(x: i32) -> i32 {
+        x
     }
 }
