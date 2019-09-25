@@ -1,7 +1,7 @@
 use algo::string_algo;
 
 fn main() {
-    let s = 1534236468;
-    let r = string_algo::reverse(s);
+    let s = "cc".to_string();
+    let r = string_algo::first_uniq_char(s);
     println!("{}", r);
 }

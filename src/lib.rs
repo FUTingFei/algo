@@ -582,4 +582,20 @@ pub mod string_algo {
         res
     }
 
+    pub fn first_uniq_char(s: String) -> i32 {
+        let c:Vec<char> = s.chars().collect();
+        let len = c.len();
+        if len == 0 {
+            return -1;
+        }
+        if len == 1 {
+            return 0;
+        }
+        for i in 0..(len-1) {
+            if !c[(i+1)..].contains(&c[i]) {
+                return i as i32;
+            }
+        }        
+        -1
+    }
 }
