@@ -604,4 +604,22 @@ pub mod string_algo {
         }
         -1
     }
+
+    pub fn is_anagram(s: String, t: String) -> bool {
+        let mut s_char: Vec<char> = s.chars().collect();
+        let mut t_char: Vec<char> = t.chars().collect();
+        let s_len = s_char.len();
+        let t_len = t_char.len();
+        if s_len != t_len {
+            return false;
+        }
+        s_char.sort();
+        t_char.sort();
+        for i in 0..s_len {
+            if s_char[i] != t_char[i] {
+                return false;
+            }
+        }
+        true
+    }
 }

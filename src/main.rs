@@ -1,7 +1,10 @@
 use algo::string_algo;
 
 fn main() {
-    let s = "dddccdbba".to_string();
-    let r = string_algo::first_uniq_char(s);
+    let s = "anagram".to_string();
+    let t = "nagaeam".to_string();
+
+    let r = string_algo::is_anagram(s, t);
     println!("{}", r);
+
 }
