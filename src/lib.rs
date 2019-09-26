@@ -659,13 +659,19 @@ pub mod string_algo {
     }
 
     pub fn my_atoi(str: String) -> i32 {
-        let number_list:Vec<char> = vec!['0','1','2','3','4','5','6','7','8','9','-'];
-
+        let number_list:Vec<char> = vec!['0','1','2','3','4','5','6','7','8','9'];
         let mut str_vec: Vec<char> = str.chars().collect();
+        let len_str = str_vec.len();
+        if len_str == 0 {
+            return 0;
+        }
         let mut res_vec: Vec<char> = vec![];
         let mut i = 0;
         for l in &str_vec {
             if *l == ' ' {
+                if len_str == 1 {
+                    return 0;
+                }
                 i += 1;
             } else {
                 break;
@@ -674,7 +680,17 @@ pub mod string_algo {
         for _k in 0..i {
             str_vec.remove(0);
         }
-        println!("{:?}", str_vec);
+        let mut is_minus = false;
+        if str_vec[0] == '-' {
+            if len_str == 1 {
+                return 0;
+            }
+            is_minus = true;
+            str_vec.remove(0);
+        }
+        if !number_list.contains(&str_vec[0]) {
+            return 0;
+        }
         for l in &str_vec {
             if number_list.contains(l) {
                 res_vec.push(*l);
@@ -682,12 +698,25 @@ pub mod string_algo {
                 break;
             }
         }
-        println!("{:?}", res_vec);
-        let mut is_minus = false;
-        if res_vec[0] == '-' {
-            is_minus = false;
-        }
-        
-        0
+        let res_str: String = res_vec.iter().collect();
+        let res: Result<i32, _> = res_str.parse();
+        let res = match res {
+            Ok(value) => {
+                if is_minus {
+                    -value
+                } else {
+                    value
+                }
+            },
+            Err(_error) => {
+                if is_minus {
+                    -2147483648
+                } else {
+                    2147483647
+                }
+                
+            }
+        };
+        res
     }
 }
