@@ -622,4 +622,39 @@ pub mod string_algo {
         }
         true
     }
+
+    pub fn is_palindrome(s: String) -> bool {
+        let char_list: Vec<char> = vec![
+            'a', 'b', 'c', 'd', 'e', 
+            'f', 'g', 'h', 'i', 'j', 
+            'k', 'l', 'm', 'n', 'o',
+            'p', 'q', 'r', 's', 't', 
+            'u', 'v', 'w', 'x', 'y', 
+            'z', 'A', 'B', 'C', 'D',  
+            'F', 'G', 'H', 'I', 'J', 
+            'K', 'L', 'M', 'N', 'O',
+            'P', 'Q', 'R', 'S', 'T', 
+            'U', 'V', 'W', 'X', 'Y', 
+            'Z', 'E',
+        ];
+        let number_list:Vec<char> = vec!['0','1','2','3','4','5','6','7','8','9'];
+        let mut c: Vec<char> = s.to_lowercase().chars().collect();
+        let mut t = c.clone();
+        let mut len = c.len();
+        if len == 0 {
+            return true;
+        }
+        t.reverse();
+        c.retain( |&x| char_list.contains(&x) || number_list.contains(&x) );
+        t.retain( |&x| char_list.contains(&x) || number_list.contains(&x) );
+        len = c.len();
+        println!("{:?}", c);
+        println!("{:?}", t);
+        for i in 0..len {
+            if c[i] != t[i] {
+                return false;
+            }
+        }
+        true
+    }
 }
