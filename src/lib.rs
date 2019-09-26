@@ -657,4 +657,37 @@ pub mod string_algo {
         }
         true
     }
+
+    pub fn my_atoi(str: String) -> i32 {
+        let number_list:Vec<char> = vec!['0','1','2','3','4','5','6','7','8','9','-'];
+
+        let mut str_vec: Vec<char> = str.chars().collect();
+        let mut res_vec: Vec<char> = vec![];
+        let mut i = 0;
+        for l in &str_vec {
+            if *l == ' ' {
+                i += 1;
+            } else {
+                break;
+            }
+        }
+        for _k in 0..i {
+            str_vec.remove(0);
+        }
+        println!("{:?}", str_vec);
+        for l in &str_vec {
+            if number_list.contains(l) {
+                res_vec.push(*l);
+            } else {
+                break;
+            }
+        }
+        println!("{:?}", res_vec);
+        let mut is_minus = false;
+        if res_vec[0] == '-' {
+            is_minus = false;
+        }
+        
+        0
+    }
 }
