@@ -719,4 +719,35 @@ pub mod string_algo {
         };
         res
     }
+
+    pub fn str_str(haystack: String, needle: String) -> i32 {
+        let h: Vec<char> = haystack.chars().collect();
+        let n: Vec<char> = needle.chars().collect();
+        let h_len = h.len();
+        let n_len = n.len();
+        if n_len == 0{
+            return 0;
+        }
+        if h_len < n_len {
+            return -1;
+        }
+        let mut target = 0;
+        let mut index = 0;
+        for j in 0..h_len {
+            for i in 0..n_len {
+                if n[i] == h[j] {
+                    target += 1;
+                    index = j;
+                } else {
+                    if target != 0 {
+                        target -= 1;
+                    }
+                }
+            }
+            if target == n_len {
+                return (index) as i32;
+            }
+        }
+        -1
+    }
 }
