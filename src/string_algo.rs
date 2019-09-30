@@ -257,4 +257,49 @@ pub mod string_algo {
             read(count_and_say(n - 1))
         }
     }
+
+    pub fn longest_common_prefix(strs: Vec<String>) -> String {
+        if strs.len() == 0 {
+            return "".to_string();
+        }
+        use std::collections::HashSet;
+        let mut pool: HashSet<char> = HashSet::new();
+        let mut res:Vec<char> = Vec::new();
+
+        let mut len = strs[0].len();
+        for str in &strs {
+            if str.len() < len {
+                len = str.len();
+            }
+        }
+
+        if len == 0 {
+            return "".to_string();
+        }
+
+        for i in 0..len {
+            for str in &strs {
+                let arr: Vec<char> = str.chars().collect();
+                pool.insert(arr[i]);
+            }
+            println!("{:?}", pool);
+            if pool.len() == 1 {
+                let mut sd: char = ' ';
+                for x in pool.iter() {
+                    sd = *x;
+                }
+                res.push(sd);
+                pool.clear();
+            } else {
+                break;
+            }
+        }
+
+        if res.len() == 0 {
+            return "".to_string();
+        }
+
+        let res:String = res.iter().collect();
+        res
+    }
 }
