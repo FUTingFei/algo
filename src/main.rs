@@ -1,8 +1,7 @@
-use algo::string_algo;
+mod string_algo;
 
 fn main() {
-    let s = "aaa".to_string();
-    let t = "aaaa".to_string();
-    let r = string_algo::str_str(s, t);
+    let s = 5;
+    let r = string_algo::string_algo::count_and_say(s);
     println!("{}", r);
 }
