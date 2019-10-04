@@ -40,3 +40,24 @@ pub fn insert_sort(arr: &mut Vec<i32>) {
         arr[(j+1) as usize] = value;
     }
 }
+
+pub fn select_sort(arr: &mut Vec<i32>) {
+    let len = arr.len();
+    if len <= 1 {
+        println!("The arr don't need to be sorted!");
+    }
+
+    for i in 0..len {
+        let mut res = arr[i];
+        let mut r = i;
+
+        for j in i..len {
+            if arr[j] < res {
+                res = arr[j];
+                r = j;
+            }
+        }
+
+        arr.swap(i, r);
+    }
+}
