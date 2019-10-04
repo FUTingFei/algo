@@ -24,5 +24,19 @@ pub fn insert_sort(arr: &mut Vec<i32>) {
         println!("The arr don't need to be sorted!");
     }
 
-    
+    for i in 1..len {
+        let value = arr[i];
+        let mut j = (i - 1) as isize;
+
+        while j >= 0 {
+            if arr[j as usize] > value {
+                arr[j as usize +1] = arr[j as usize];
+            } else {
+                break;
+            }
+            j -= 1;
+        }
+
+        arr[(j+1) as usize] = value;
+    }
 }
