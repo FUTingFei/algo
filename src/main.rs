@@ -1,7 +1,11 @@
-mod string_algo;
+use algo;
 
 fn main() {
-    let s: Vec<String> = vec!["lower".to_string(),"flow".to_string(),"flight".to_string()];
-    let r = string_algo::string_algo::longest_common_prefix(s);
-    println!("{}", r);
+   let mut nums1 = vec![5,0];
+   let m = 1;
+   let mut nums2 = vec![1,];
+   let n = 1;
+   
+   algo::merge(&mut nums1, m, &mut nums2, n);
+   println!("{:?}", nums1);
 }
