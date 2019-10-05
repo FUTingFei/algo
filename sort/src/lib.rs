@@ -61,3 +61,31 @@ pub fn select_sort(arr: &mut Vec<i32>) {
         arr.swap(i, r);
     }
 }
+
+pub fn quick_sort(arr: &mut [i32]) {
+    let hi = arr.len() as isize - 1;
+    quick_sort_helper(arr, 0, hi);
+}
+
+fn quick_sort_helper(arr: &mut [i32], lo: isize, hi: isize) {
+    if lo < hi {
+        let pivot = partition(arr, lo, hi);
+        quick_sort_helper(arr, lo, pivot - 1);
+        quick_sort_helper(arr, pivot + 1, hi);
+    }
+}
+
+fn partition(arr: &mut [i32], lo: isize, hi: isize) -> isize {
+    let pivot_val = arr[hi as usize];
+    let mut i = lo;
+
+    for j in lo..hi {
+        if arr[j as usize] < pivot_val {
+            arr.swap(i as usize, j as usize);
+            i += 1;
+        }
+    }
+
+    arr.swap(i as usize, hi as usize);
+    i
+}
