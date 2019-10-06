@@ -1,4 +1,4 @@
-use algo;
+mod my_binary_tree;
 
 fn main() {
    let mut nums1 = vec![5,0];
