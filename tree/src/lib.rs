@@ -32,32 +32,75 @@ impl Solution {
     }
  
     pub fn is_valid_bst(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
+      Solution::valid(root, None, None)
+    }
 
-      fn get_node(ori: Option<Rc<RefCell<TreeNode>>>) -> Option<TreeNode> {
-        let mut s = None;
-        if let Some(r) = ori {
-          if let Ok(v) = Rc::try_unwrap(r) {
-            s = Some(v.into_inner());
+    fn valid(root: Option<Rc<RefCell<TreeNode>>>, lo: Option<i32>, hi: Option<i32>) -> bool {
+      
+      if root.is_none() {
+        return true;
+      }
+
+      let node = root.unwrap();
+      match (lo, hi) {
+        (None, None) => {},
+        (None, Some(ref x)) => {
+          if node.as_ref().borrow().val >= *x {
+            return false;
+          }
+        },
+        (Some(ref x), None) => {
+          if node.as_ref().borrow().val <= *x {
+            return false;
+          }
+        },
+        (Some(ref l), Some(ref h)) => {
+          if !(node.as_ref().borrow().val > *l && node.as_ref().borrow().val < *h) {
+            return false;
           }
         }
-        s
       }
 
-      let c_node = get_node(root);
-      if c_node != None {
-        let c_node = c_node.unwrap();
-        let l_node = get_node(c_node.left);
-        let r_node = get_node(c_node.right);
-      }
+      if !Solution::valid(
+        node.as_ref().borrow().left.clone(), 
+        lo, 
+        Some(node.as_ref().borrow().val)) {
+          return false;
+        }
 
-      // if !( (l_val < c_val) && (r_val > c_val) ) {
-      //   return false;
-      // }
-      
-      // Solution::is_valid_bst(Some(Rc::new(RefCell::new())));
-      // Solution::is_valid_bst(Some(Rc::new(RefCell::new(l_node))));
+      if !Solution::valid(
+        node.as_ref().borrow().right.clone(), 
+        Some(node.as_ref().borrow().val),
+        hi) {
+          return false;
+        }
 
       true
+    }
+
+    pub fn is_symmetric(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
+        if root.is_none() {
+          return false;
+        }
+        let mut mid_vec: Vec<i32> = Vec::new();
+        let temp = mid_vec.clone();
+        Solution::get_mid(root, &mut mid_vec);
+        mid_vec.reverse();
+        let n = mid_vec.len();
+        for i in 0..n {
+          if mid_vec[i] != temp[i] {
+            return false;
+          }
+        }
+        true
+    }
+
+    fn get_mid(root: Option<Rc<RefCell<TreeNode>>>, mid_vec: &mut Vec<i32>) {
+      if let Some(r) = root {
+        Solution::get_mid(r.as_ref().borrow().left.clone(), mid_vec);
+        mid_vec.push(r.as_ref().borrow().val);
+        Solution::get_mid(r.as_ref().borrow().right.clone(), mid_vec);
+      }
     }
 }
 
@@ -74,10 +117,12 @@ mod test {
 
     #[test]
     fn test_is_valid_bst() {
-      let true_bst = btree![0];
+      let true_bst = btree![10,5,15,null,null,6,20];
       assert_eq!(Solution::is_valid_bst(true_bst), true);
+    }
 
-      // let false_bst = btree![5,1,4,null,null,3,6];
-      // assert_eq!(Solution::is_valid_bst(false_bst), false);
+    #[test]
+    fn test_symmetric() {
+      let symmetric = btree![1,2,2,3,4,4,3];
     }
 }

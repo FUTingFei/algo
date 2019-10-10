@@ -12,3 +12,22 @@ pub fn climb_stairs(n: i32) -> i32 {
     }
     arr[n as usize] as i32
 }
+
+pub fn max_profit(prices: Vec<i32>) -> i32 {
+    let len = prices.len();
+    let mut profit = 0;
+
+    for i in 0..len {
+        for j in (i+1)..len {
+            if prices[j] - prices[i] > profit  {
+                profit = prices[j] - prices[i];
+            }
+        }
+    }
+
+    profit
+}
+
+pub fn max_sub_array(nums: Vec<i32>) -> i32 {
+    let mut profit = 
+}
