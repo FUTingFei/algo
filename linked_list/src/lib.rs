@@ -1,33 +1,38 @@
-// use leetcode_prelude::ListNode;
-// use leetcode_prelude;
-
-
-
-
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode { next: None, val }
-    }
-}
+use leetcode_prelude::ListNode;
+use leetcode_prelude;
 
 struct Solution {}
 
 impl Solution {
     pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
-        // 找到倒数第n+1个
-        let mut len = 0;
-        // Solution::len(&head, &mut len);
+        let mut dummy_node: ListNode = ListNode::new(0);
+        dummy_node.next = head;
+        let mut dummy = Some(Box::new(dummy_node));
+        let mut len = -1;
+        let mut ol = &dummy;
 
-        // 将 next 指向倒数第n-1个或者NULL
+        while let Some(node) = ol {
+            len += 1;
+            ol = &node.next;
+        }
 
-        head
+        let mut real = &mut dummy;
+        let mut count = len - n;
+        while count > 0 {
+            count -= 1;
+            if let Some(node) = real {
+                real = &mut node.next;
+            }
+        }
+        
+        if let Some(mut node) = real {
+            if let Some(n_node) = &node.next {
+                node.next = n_node.next;
+            }
+        }
+
+
+        dummy.unwrap().next
     }
 
     pub fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
