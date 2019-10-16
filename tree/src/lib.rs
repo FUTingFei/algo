@@ -82,16 +82,17 @@ impl Solution {
         if root.is_none() {
           return false;
         }
+
         let mut mid_vec: Vec<i32> = Vec::new();
-        let temp = mid_vec.clone();
         Solution::get_mid(root, &mut mid_vec);
-        mid_vec.reverse();
+        println!("{:?}", mid_vec);
         let n = mid_vec.len();
         for i in 0..n {
-          if mid_vec[i] != temp[i] {
+          if mid_vec[i] != mid_vec[n - i -1] {
             return false;
           }
         }
+        
         true
     }
 
@@ -101,7 +102,7 @@ impl Solution {
         mid_vec.push(r.as_ref().borrow().val);
         Solution::get_mid(r.as_ref().borrow().right.clone(), mid_vec);
       }
-    }
+    } 
 }
 
 #[cfg(test)]
@@ -123,6 +124,8 @@ mod test {
 
     #[test]
     fn test_symmetric() {
-      let symmetric = btree![1,2,2,3,4,4,3];
+      let symmetric = btree![1,2,2,2,null,2];
+      let res = Solution::is_symmetric(symmetric);
+      // assert_eq!(res, false);
     }
 }
