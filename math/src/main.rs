@@ -1,6 +1,38 @@
 fn main() {
-    let res = is_power_of_three(9);
+    let res = roman_to_int("IV".to_owned());
     println!("{:?}", res);
+}
+
+pub fn roman_to_int(s: String) -> i32 {
+    let mut sum = 0;
+    let v:Vec<char> = s.chars().collect();
+    let mut nums:Vec<i32> = Vec::new();
+    for i in v {
+        let temp = match i {
+            'I' => 1,
+            'V' => 5,
+            'X' => 10,
+            'L' => 50,
+            'C' => 100,
+            'D' => 500,
+            'M' => 1000,
+            _ => 0,
+        };
+        nums.push(temp);
+    }
+
+    let n = nums.len();
+    for i in 0..(n-1) {
+        if nums[i as usize] < nums[i as usize + 1] {
+            nums[i as usize] = - nums[i as usize];
+        }
+    }
+
+    for val in nums {
+        sum += val;
+    }
+
+    sum
 }
 
 
