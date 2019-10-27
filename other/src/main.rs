@@ -6,6 +6,19 @@ fn main() {
     println!("{:?}", res);
 }
 
+pub fn hamming_distance(x: i32, y: i32) -> i32 {
+    let a = x^y;
+    let b = format!("{:b}",a);
+    let s:Vec<char> = b.chars().collect();
+    let mut res = 0;
+    for i in s {
+        if i == '1' {
+            res += 1;
+        }
+    }
+    res
+}
+
 pub fn generate(num_rows: i32) -> Vec<Vec<i32>> {
     let mut res:Vec<Vec<i32>> = Vec::new();
     for i in 0..num_rows {
