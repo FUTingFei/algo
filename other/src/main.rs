@@ -1,7 +1,49 @@
+use std::collections::HashMap;
+
 fn main() {
-    let nums = vec![1];
-    let res = missing_number(nums);
+    let s = "({}[]())".to_owned();
+    let res = is_valid(s);
     println!("{}", res);
+}
+
+pub fn is_valid(s: String) -> bool {
+    let vs: Vec<char> = s.chars().collect();
+    let len = vs.len();
+    if len == 0 {
+        return true;
+    }
+
+    if len % 2 != 0 {
+        return false;
+    }
+
+    let mut map: HashMap<char, char> = HashMap::new();
+    map.insert(')', '(');
+    map.insert(']', '[');
+    map.insert('}', '{');
+
+    let mut stack_c: Vec<char> = Vec::new();
+
+    for i in vs {
+
+        if !map.contains_key(&i) {
+            stack_c.push(i);
+        } else {
+            if let Some(a) = stack_c.pop() {
+                if a != *map.get(&i).unwrap() {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+
+    if !stack_c.is_empty() {
+        return false;
+    }
+    
+    true
 }
 
 pub fn missing_number(nums: Vec<i32>) -> i32 {
