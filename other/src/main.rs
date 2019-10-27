@@ -1,9 +1,33 @@
 use std::collections::HashMap;
 
 fn main() {
-    let s = "({}[]())".to_owned();
-    let res = is_valid(s);
-    println!("{}", res);
+    let s = 5;
+    let res = generate(s);
+    println!("{:?}", res);
+}
+
+pub fn generate(num_rows: i32) -> Vec<Vec<i32>> {
+    let mut res:Vec<Vec<i32>> = Vec::new();
+    for i in 0..num_rows {
+        let mut temp: Vec<i32> = Vec::new();
+        if i == 0 {
+            temp = vec![1];
+        } else {
+            let vi = &res[i as usize - 1];
+            for j in 0..=i {
+                let mut a = 0;
+                if j == 0 || j == i {
+                    a = 1;
+                } else {
+                    a = vi[j as usize] + vi[j as usize - 1];
+                }
+                temp.push(a);
+            }
+        }
+        res.push(temp);
+    }
+
+    res
 }
 
 pub fn is_valid(s: String) -> bool {
