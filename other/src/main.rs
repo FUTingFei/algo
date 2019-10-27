@@ -16,6 +16,7 @@ pub fn hamming_distance(x: i32, y: i32) -> i32 {
             res += 1;
         }
     }
+    println!("test git lens");
     res
 }
 
