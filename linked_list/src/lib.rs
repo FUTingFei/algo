@@ -59,7 +59,6 @@ impl Solution {
 
         dummy_head.unwrap().next
     }
-
     
     pub fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         let mut ol = head;
@@ -73,18 +72,6 @@ impl Solution {
 
         nl
     
-    }
-
-    fn len(head: &Option<Box<ListNode>>) -> i32 {
-        let mut head = head;
-        let mut res = 0;
-
-        while let Some(node) = head {
-            res += 1;
-            head = &node.next;
-        }
-
-        res
     }
 
 }
