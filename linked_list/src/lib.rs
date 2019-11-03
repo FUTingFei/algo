@@ -36,24 +36,30 @@ impl Solution {
         head.next
     }
     
-    // pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
-    //     let mut head = head;
-    //     let len = Solution::len(&head);
+    pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
+        let mut dummy_head = Some( Box::new(ListNode {val:0, next: head}));
+        let mut len = 0;
+        {
+            let mut p = dummy_head.as_ref();
+            while p.unwrap().next.is_some() {
+                len += 1;
+                p = p.unwrap().next.as_ref()
+            }
+        }
+        
+        let x = len - n;
+        {
+            let mut p = dummy_head.as_mut();
+            for _ in 0..x {
+                p = p.unwrap().next.as_mut();
+            }
+            let next = p.as_mut().unwrap().next.as_mut().unwrap().next.take();
+            p.unwrap().next = next;
+        }
 
-    //     if n == 0 {
-    //         return head;
-    //     } 
+        dummy_head.unwrap().next
+    }
 
-    //     let mut temp_head = ListNode::new(0);
-    //     temp_head.next = head;
-
-    //     let mut count = 0;
-    //     let rn = len - n + 1;
-
-    //     let mut haha = Some(temp_head);
-
-
-    // }
     
     pub fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         let mut ol = head;
