@@ -5,6 +5,35 @@ use leetcode_prelude;
 struct Solution {}
 
 impl Solution {
+    pub fn is_palindrome(head: Option<Box<ListNode>>) -> bool {
+        let mut lv:Vec<i32> = Vec::new();
+        let mut list = head;
+
+        while let Some(node) = list.as_ref() {
+            let num = node.val;
+            lv.push(num);
+            list = list.unwrap().next;
+        }
+
+        let temp = lv.clone();
+
+        lv.reverse();
+
+        let len = temp.len();
+
+        if len == 0 {
+            return true;
+        }
+        
+        for i in 0..len {
+            if lv[i] != temp[i] {
+                return false;
+            }
+        }
+        
+        true
+    }
+
     pub fn merge_two_lists(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
 
         // 获取两个节点
@@ -87,5 +116,13 @@ mod test {
         let l3 = linkedlist![1,2,3,4,5,6,7,8];
         let res = Solution::merge_two_lists(l1, l2);
         assert_eq!(l3, res);
+    }
+
+    #[test]
+    fn test_is_palindrome() {
+        let l1 = linkedlist![1,3,5,7];
+        let l2 = linkedlist![1,2,2,1];
+        assert_eq!(false,Solution::is_palindrome(l1));
+        assert_eq!(true,Solution::is_palindrome(l2));
     }
 }
