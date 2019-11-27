@@ -28,6 +28,8 @@ pub fn max_profit(prices: Vec<i32>) -> i32 {
     profit
 }
 
+
 pub fn max_sub_array(nums: Vec<i32>) -> i32 {
-    let mut profit = 
+        
+    1
 }
