@@ -1,5 +1,5 @@
-// extern crate array_string;
+use array_string::Solution;
 
 fn main() {
-    hello();
+    
 }
