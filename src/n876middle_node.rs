@@ -1,3 +1,7 @@
+use leetcode_prelude::ListNode;
+use leetcode_prelude::linkedlist;
+use leetcode_prelude;
+
 pub fn middle_node(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
     let mut head = head;
     let mut fast = head.as_ref();
