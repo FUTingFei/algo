@@ -23,7 +23,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test1 {
+    fn test1() {
         let (x,y,z) = (123, 121, -10);
         let res1 = is_palindrome(x);
         let res2 = is_palindrome(y);

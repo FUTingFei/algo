@@ -1,30 +1,19 @@
-pub fn merge(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
-    let mut m = m;
-    let mut n = n;
+pub mod n009is_palindrome;
+pub mod n021merge_two_lists;
+pub mod n027remove_element;
+pub mod n035search_insert;
+pub mod n053max_sub_array;
+pub mod n058length_of_last_word;
+pub mod n067add_binary;
+pub mod n069my_sqrt;
+pub mod n070climb_stairs;
+pub mod n083delete_duplicates;
+pub mod n1002common_chars;
+pub mod n1310xor_queries;
+pub mod n206reverse_list;
+pub mod n310find_min_height_trees;
+pub mod n392is_subsequence;
+pub mod n717is_one_bit_character;
+pub mod n876middle_node;
 
-    if m == 0 {
-        let temp = nums2.clone();
-        nums1.clear();
-        for t in temp {
-            nums1.push(t);
-        }
-        return;
-    }
-
-    while n > 0 {
-        if m == 0 {
-            nums1[(m + n) as usize - 1] = nums2[n as usize - 1];
-            n -= 1;
-        } else {
-            if nums1[m as usize - 1] >= nums2[n as usize - 1] {
-                nums1[(m + n) as usize - 1] = nums1[m as usize - 1];
-                m -= 1;
-            } else {
-                nums1[(m + n) as usize - 1] = nums2[n as usize - 1];
-                n -= 1;
-            }
-        }
-        
-    }
-    
-}
+ 
