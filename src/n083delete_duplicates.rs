@@ -36,11 +36,4 @@ mod tests {
         let res = linkedlist![1,2];
         assert_eq!(res, Solution::delete_duplicates(list));
     }
-
-    #[test]
-    fn test2() {
-        let list = linkedlist![1,1,2,3,3];
-        let res = linkedlist![1,2,3];
-        assert_eq!(res, Solution::delete_duplicates(list));
-    }
 }
