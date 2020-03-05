@@ -24,3 +24,5 @@ pub mod n112has_path_sum;
 pub mod n119get_row;
 pub mod n155min_stack;
 pub mod n167two_sum;
+pub mod n168convert_to_title;
+pub mod n171title_to_number;
