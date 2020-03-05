@@ -22,4 +22,5 @@ pub mod n110is_balanced;
 pub mod n111min_depth;
 pub mod n112has_path_sum; 
 pub mod n119get_row;
-pub mod n155MinStack;
+pub mod n155min_stack;
+pub mod n167two_sum;
