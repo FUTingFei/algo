@@ -2,10 +2,11 @@ use algo;
 use leetcode_prelude::ListNode;
 use leetcode_prelude::linkedlist;
 use leetcode_prelude;
-mod n203remove_elements;
+mod n383can_construct;
 
 
 fn main() {
-    let list = linkedlist![1,2,6,3,4,5,6];
-    let r = algo::n203remove_elements::Solution::remove_elements(list, 6);
+    assert_eq!(false, algo::n383can_construct::Solution::can_construct("a".to_owned(), "b".to_owned()));
+    assert_eq!(false, algo::n383can_construct::Solution::can_construct("aa".to_owned(), "ab".to_owned()));
+    assert_eq!(true, algo::n383can_construct::Solution::can_construct("aa".to_owned(), "aab".to_owned()));
 }
