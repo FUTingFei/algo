@@ -2,11 +2,10 @@ use algo;
 use leetcode_prelude::ListNode;
 use leetcode_prelude::linkedlist;
 use leetcode_prelude;
-mod n383can_construct;
+mod n443compress;
 
 
 fn main() {
-    assert_eq!(false, algo::n383can_construct::Solution::can_construct("a".to_owned(), "b".to_owned()));
-    assert_eq!(false, algo::n383can_construct::Solution::can_construct("aa".to_owned(), "ab".to_owned()));
-    assert_eq!(true, algo::n383can_construct::Solution::can_construct("aa".to_owned(), "aab".to_owned()));
+    let mut chars = vec!['a','a','b','b','c','c','c'];
+    algo::n443compress::Solution::compress(&mut chars);
 }
