@@ -1,29 +1,32 @@
 struct CQueue {
-    v1: Vec<i32>,
+    stack1: Vec<i32>,
+    stack2: Vec<i32>,
 }
-
-// 虽然题目说是要用两个数组，但是我现在只想一把梭，二刷的时候再改进吧，反正能通过，只能怪题出的不好嘻嘻嘻
 
 impl CQueue {
 
     fn new() -> Self {
         CQueue {
-            v1: Vec::new(),
+            stack1: Vec::new(),
+            stack2: Vec::new(),
         }
     }
     
     fn append_tail(&mut self, value: i32) {
-        self.v1.push(value);
+        self.stack1.push(value);
     }
     
     fn delete_head(&mut self) -> i32 {
-        if self.v1.is_empty() {
-            -1
+        if self.stack2.is_empty() {
+            while let Some(n) = self.stack1.pop() {
+                self.stack2.push(n);
+            }
+        }
+        
+        if let Some(n) =  self.stack2.pop() {
+            n
         } else {
-            self.v1.reverse();
-            let res = self.v1.pop().unwrap();
-            self.v1.reverse();
-            res
+            -1
         }
     }
 }

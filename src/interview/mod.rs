@@ -8,3 +8,6 @@ pub mod i10fib;
 pub mod i10num_ways;
 pub mod i11min_array;
 pub mod i12exist;
+pub mod i13moving_count;
+pub mod i14cutting_rope_1;
+pub mod i14cutting_rope_2;

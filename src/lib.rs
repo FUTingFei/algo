@@ -67,3 +67,5 @@ pub mod n443compress;
 pub mod n447number_of_boomerangs;
 pub mod n448find_disappeared_numbers;
 pub mod interview;
+pub mod n191hammingWeight;
+pub mod n463island_perimeter;

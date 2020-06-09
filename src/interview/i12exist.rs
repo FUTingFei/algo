@@ -2,48 +2,44 @@ pub struct Solution {}
 
 impl Solution {
     pub fn exist(board: Vec<Vec<char>>, word: String) -> bool {
-        use std::collections::HashSet;
-        let mut i:usize = 0;
-        let mut j:usize = 0;
-        let mut start: Vec<(usize, usize)> = Vec::new();
-        let wordv: Vec<char> = word.chars().collect();
-        let wl = wordv.len();
-        if wl == 0 {
-            return true;
-        }
+        let mut board = board;
+        let word: Vec<char> = word.chars().collect();
 
-        let n = board.len();
-        let m = board[0].len();
-
-        for a in 0..n {
-            for b in 0..m {
-                if board[a][b] == wordv[0] {
-                    start.push((a,b));
+        for i in 0..board.len() {
+            for j in 0..board[0].len() {
+                if Solution::dfs(&mut board, &word, i as i32, j as i32, 0) {
+                    return true;
                 }
             }
         }
 
-        for (a, b) in start {
-            let mut passed: HashSet<(usize, usize)> = HashSet::new();
-            i = a;
-            j = b;
-            passed.insert((i, j));
-            
-            let mut curr = 0;
+        false
+    }
 
-            while curr < wl {
-                curr += 1;
-                if board[i][j]
-            }
-
-            if curr == wl - 1 {
-                
-            }
-            
+    fn dfs(board: &mut Vec<Vec<char>>, word: &Vec<char>, i: i32, j: i32, k: usize) -> bool {
+        if i >= board.len() as i32
+        || i < 0
+        || j >= board[0].len() as i32
+        || j < 0 
+        || board[i as usize][j as usize] != word[k] {
+            return false;
         }
 
-        true
+        if k == word.len() - 1 {
+            return true;
+        }
 
+        let temp = board[i as usize][j as usize];
+        board[i as usize][j as usize] = '/';
+
+        let res =   Solution::dfs(board, word, i + 1, j, k + 1)
+                ||  Solution::dfs(board, word, i - 1, j, k + 1)
+                ||  Solution::dfs(board, word, i, j + 1, k + 1)
+                ||  Solution::dfs(board, word, i, j - 1, k + 1);
+        
+        board[i as usize][j as usize] = temp;
+        
+        res
     }
 }
 

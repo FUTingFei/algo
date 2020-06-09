@@ -1,7 +1,8 @@
 pub struct Solution {}
 
 impl Solution {
-    pub fn find_number_in2_d_array(matrix: Vec<Vec<i32>>, target: i32) -> bool {
+
+    pub fn find_number_in2_d_array(matrix: Vec<Vec<i32>>, target: i32) -> bool { 
         let n = matrix.len();
         if n == 0 {
             return false;
@@ -11,25 +12,52 @@ impl Solution {
             return false;
         }
 
-        for i in 0..n {
-            if target >= matrix[i][0] && target <=  matrix[i][m-1] {
-                let mut l = 0;
-                let mut r = m-1;
-                while l <= r {
-                    let mid = (l+r)/2;
-                    if matrix[i][mid] > target {
-                        r = mid - 1;
-                    } else if matrix[i][mid] < target {
-                        l = mid + 1;
-                    } else {
-                        return true;
-                    }
-                }
+        let mut i = 0;
+        let mut j = m as i32;
+
+        while i <= n-1 && j >= 1 {
+            if matrix[i][j as usize - 1] == target {
+                return true;
+            } else if matrix[i][j as usize - 1] > target {
+                j -= 1;
+            } else {
+                i += 1;
             }
-        }        
+        }
 
         false
     }
+
+
+    // pub fn find_number_in2_d_array(matrix: Vec<Vec<i32>>, target: i32) -> bool {
+    //     let n = matrix.len();
+    //     if n == 0 {
+    //         return false;
+    //     }
+    //     let m = matrix[0].len();
+    //     if m == 0 {
+    //         return false;
+    //     }
+
+    //     for i in 0..n {
+    //         if target >= matrix[i][0] && target <=  matrix[i][m-1] {
+    //             let mut l = 0;
+    //             let mut r = m-1;
+    //             while l <= r {
+    //                 let mid = (l+r)/2;
+    //                 if matrix[i][mid] > target {
+    //                     r = mid - 1;
+    //                 } else if matrix[i][mid] < target {
+    //                     l = mid + 1;
+    //                 } else {
+    //                     return true;
+    //                 }
+    //             }
+    //         }
+    //     }        
+
+    //     false
+    // }
 }
 
 #[cfg(test)]
