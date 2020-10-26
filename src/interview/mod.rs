@@ -1,3 +1,4 @@
+pub mod i00example;
 pub mod i03find_repeat_number;
 pub mod i04find_number_in2_d_array;
 pub mod i05replace_space;
