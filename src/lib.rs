@@ -1,3 +1,5 @@
+pub mod interview;
+
 pub mod n009is_palindrome;
 pub mod n021merge_two_lists;
 pub mod n027remove_element;
@@ -66,6 +68,5 @@ pub mod n441arrange_coins;
 pub mod n443compress;
 pub mod n447number_of_boomerangs;
 pub mod n448find_disappeared_numbers;
-pub mod interview;
 pub mod n191hammingWeight;
 pub mod n463island_perimeter;
