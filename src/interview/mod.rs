@@ -13,3 +13,4 @@ pub mod i13moving_count;
 pub mod i14cutting_rope_1;
 pub mod i14cutting_rope_2;
 pub mod i15hamming_weight;
+pub mod i16my_pow;

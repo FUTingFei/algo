@@ -1,10 +1,6 @@
 pub struct Solution {}
 
-impl Solution {
-    pub fn hello() {
-        println!("hello");
-    }
-}
+
 
 #[cfg(test)]
 mod tests {
