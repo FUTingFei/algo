@@ -6,6 +6,7 @@ pub struct Solution {}
 mod tests {
     use super::*;
 
+    #[test]
     pub fn i00() {
         
     }
