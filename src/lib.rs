@@ -1,5 +1,8 @@
 pub mod interview;
-
+pub mod n001two_sum;
+pub mod n002add_two_numbers;
+pub mod n003length_of_longest_substring;
+pub mod n004find_median_sorted_arrays;
 pub mod n009is_palindrome;
 pub mod n021merge_two_lists;
 pub mod n027remove_element;
@@ -32,9 +35,6 @@ pub mod n171title_to_number;
 pub mod n172trailing_zeroes;
 pub mod n189rotate;
 pub mod n198rob;
-pub mod n002add_two_numbers;
-pub mod n003length_of_longest_substring;
-pub mod n004find_median_sorted_arrays;
 pub mod n202is_happy;
 pub mod n203remove_elements;
 pub mod n205is_isomorphic;
